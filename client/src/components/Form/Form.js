@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { TextField, Button, Typography, Paper } from "@material-ui/core";
-import { useDispatch, useSelector } from "react-redux";
-import FileBase from "react-file-base64";
-import { useHistory } from "react-router-dom";
+import { Button, Paper, TextField, Typography } from "@material-ui/core";
 import ChipInput from "material-ui-chip-input";
+import React, { useEffect, useState } from "react";
+import FileBase from "react-file-base64";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { createPost, updatePost } from "../../actions/posts";
 import useStyles from "./styles";
@@ -79,7 +79,7 @@ const Form = ({ currentId, setCurrentId }) => {
         onSubmit={handleSubmit}
       >
         <Typography variant="h6">
-          {currentId ? `Editing "${post?.title}"` : "Creating a Memory"}
+          {currentId ? `Editing "${post?.title}"` : "Create a Snap"}
         </Typography>
         <TextField
           name="title"

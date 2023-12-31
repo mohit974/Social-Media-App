@@ -3,8 +3,6 @@ import mongoose from "mongoose";
 
 import PostMessage from "../models/postMessage.js";
 
-const router = express.Router();
-
 export const getPost = async (req, res) => {
   const { id } = req.params;
 
@@ -137,5 +135,3 @@ export const commentPost = async (req, res) => {
 
   res.json(updatedPost);
 };
-
-export default router;
