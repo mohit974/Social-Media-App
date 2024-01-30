@@ -1,6 +1,8 @@
+import dotenv from "dotenv";
 import jwt from "jsonwebtoken";
 
-const secret = "test";
+dotenv.config();
+const secret = process.env.SECRET;
 
 const auth = async (req, res, next) => {
   try {
