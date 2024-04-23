@@ -24,7 +24,7 @@ const CommentSection = ({ post }) => {
       <div className="flex-grow mb-4">
         <h6 className="font-bold mb-2 text-2xl">
           {post?.comments.length}
-          &nbsp;{post?.comments.length < 2 ? "Comment" : "Comment"}
+          &nbsp;{post?.comments.length < 2 ? "Comment" : "Comments"}
         </h6>
         <div className="max-h-[200px] overflow-y-auto max-w-3xl bg-gray-600 rounded-lg p-2">
           {comments?.map((c, i) => (
