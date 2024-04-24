@@ -39,15 +39,15 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-[#1B1A55] mt-5 mx-4 mb-0 rounded-2xl flex flex-col items-center justify-center">
+    <div className="bg-neutral-900 border border-neutral-700 mt-5 mx-4 mb-0 rounded-2xl flex flex-col items-center justify-center relative">
       <div>
         <Link to="/" className="flex items-center -mb-2">
           <img src={snapsText} alt="icon" className="md:size-[120px] invert" />
         </Link>
       </div>
       {user?.result ? (
-        <div className="mb-4 flex flex-col justify-center items-center">
-          <div className="flex items-center justify-center space-x-8">
+        <div className="mb-4 flex justify-between items-center w-full px-4">
+          <div className="flex items-center space-x-2">
             {user?.result.imageUrl ? (
               <img
                 className="h-12 w-12 rounded-full"
@@ -63,18 +63,25 @@ const Navbar = () => {
               {user?.result.name}
             </span>
           </div>
-          <button
-            onClick={accountLogout}
-            className="bg-red-500 text-white rounded-md px-4 py-2 mt-4"
-          >
-            Logout
+          <button onClick={accountLogout} className="mt-1 mr-1">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="2em"
+              height="2em"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="#ff0000"
+                d="m17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4z"
+              ></path>
+            </svg>
           </button>
         </div>
       ) : (
         <div className="mb-4 flex flex-col justify-center items-center">
           <Link
             to="/auth"
-            className="bg-blue-500 text-white rounded-md px-4 py-2"
+            className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
           >
             Sign In
           </Link>

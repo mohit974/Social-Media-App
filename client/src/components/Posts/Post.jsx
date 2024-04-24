@@ -7,6 +7,7 @@ import { deletePost, likePost } from "../../reducers/posts";
 const Post = ({ post, setCurrentId }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
   const [likes, setLikes] = useState(post?.likes);
+  const [isMessageVisible, setIsMessageVisible] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -22,6 +23,10 @@ const Post = ({ post, setCurrentId }) => {
     } else {
       setLikes([...post.likes, userId]);
     }
+  };
+
+  const toggleMessageVisibility = () => {
+    setIsMessageVisible(!isMessageVisible);
   };
 
   const Likes = () => {
@@ -93,7 +98,7 @@ const Post = ({ post, setCurrentId }) => {
   };
 
   return (
-    <div className="w-[700px] max-w-full bg-[#1B1A55] rounded-xl shadow-md overflow-hidden my-1 relative hover:cursor-default">
+    <div className="w-[700px] max-w-full bg-neutral-900 border border-neutral-700 rounded-xl shadow-md overflow-hidden my-1 relative hover:cursor-default">
       <div className="flex p-4">
         <div>
           <span className="h-8 w-8 rounded-full bg-gray-200 text-gray-700 flex justify-center items-center text-center font-bold text-lg">
@@ -101,7 +106,7 @@ const Post = ({ post, setCurrentId }) => {
           </span>
         </div>
         <div className="ml-4">
-          <div className="uppercase tracking-wide text-sm text-white font-semibold mt-1">
+          <div className="uppercase tracking-wide text-sm text-[#36d7b7] font-semibold mt-1">
             {post.name}
             <span className="text-gray-500 rounded-full size-12 mx-2 inline">
               •
@@ -111,15 +116,56 @@ const Post = ({ post, setCurrentId }) => {
             </span>
           </div>
           <div className="hover:cursor-pointer" onClick={openPost}>
-            <p className="block mt-4 text-lg leading-tight font-medium text-white hover:underline">
+            <p className="block mt-4 text-lg leading-tight font-medium text-blue-500 hover:underline">
               {post.title}
             </p>
           </div>
-
-          <p className="mt-2 text-white">
-            {post.message.split(" ").splice(0, 25).join(" ")}...
-          </p>
-          <p className="text-white mt-2">
+          {isMessageVisible ? (
+            <div className="mt-2">
+              <p className="text-white">
+                {post.message}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                  onClick={toggleMessageVisibility}
+                  className="hover:cursor-pointer inline"
+                >
+                  <g fill="none" fillRule="evenodd">
+                    <path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"></path>
+                    <path
+                      fill="#36d7b7"
+                      d="M10.94 7.94a1.5 1.5 0 0 1 2.12 0l5.658 5.656a1.5 1.5 0 1 1-2.122 2.121L12 11.122l-4.596 4.596a1.5 1.5 0 1 1-2.122-2.12z"
+                    ></path>
+                  </g>
+                </svg>
+              </p>
+            </div>
+          ) : (
+            <div className="mt-2">
+              <p className="text-white">
+                {post.message.split(" ").splice(0, 25).join(" ")}...&nbsp;
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 24 24"
+                  onClick={toggleMessageVisibility}
+                  className="hover:cursor-pointer inline"
+                >
+                  <g fill="none" fillRule="evenodd">
+                    <path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"></path>
+                    <path
+                      fill="#36d7b7"
+                      d="M13.06 16.06a1.5 1.5 0 0 1-2.12 0l-5.658-5.656a1.5 1.5 0 1 1 2.122-2.121L12 12.879l4.596-4.596a1.5 1.5 0 0 1 2.122 2.12l-5.657 5.658Z"
+                    ></path>
+                  </g>
+                </svg>
+              </p>
+            </div>
+          )}
+          <p className="text-gray-400 mt-2">
             {post.tags.map((tag) => `#${tag} `)}
           </p>
           <div className="mt-2">
@@ -132,9 +178,11 @@ const Post = ({ post, setCurrentId }) => {
               alt={post.title}
             />
           </div>
-          <button type="button" disabled={!user?.result} onClick={handleLike}>
-            <Likes />
-          </button>
+          {user?.result && (
+            <button type="button" disabled={!user?.result} onClick={handleLike}>
+              <Likes />
+            </button>
+          )}
         </div>
       </div>
       {(user?.result?.googleId === post?.creator ||

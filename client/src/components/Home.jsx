@@ -74,21 +74,15 @@ export default function Home() {
       </div>
       <div className="w-1/4">
         <RightSidebar>
-          <div className="bg-[#1B1A55] mt-5 m-4 rounded-2xl px-8 pt-6 pb-8 mb-4 shadow-md">
+          <div className="bg-neutral-900 border border-neutral-700 mt-5 m-4 rounded-2xl px-8 pt-6 pb-8 mb-4 shadow-md">
             {" "}
             <h1 className="text-xl font-bold">Search Posts</h1>
             <form className="mt-4">
               <div className="mb-4">
-                <label
-                  className="block text-white text-sm font-bold mb-2"
-                  htmlFor="search"
-                >
-                  Search
-                </label>
                 <input
                   onKeyDown={handleKeyPress}
                   name="search"
-                  className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className="p-2 shadow appearance-none border w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline rounded-lg text-sm disabled:opacity-50 disabled:pointer-events-none bg-neutral-900 border-neutral-700 text-neutral-400 placeholder-neutral-500 focus:ring-neutral-600"
                   id="search"
                   type="text"
                   placeholder="Search Title"
@@ -98,12 +92,6 @@ export default function Home() {
                 />
               </div>
               <div className="mb-4">
-                <label
-                  className="block text-white text-sm font-bold mb-2"
-                  htmlFor="tags"
-                >
-                  Search Tags
-                </label>
                 <div id="tags" className="flex flex-wrap">
                   {tags.map((tag, index) => (
                     <span
@@ -121,7 +109,7 @@ export default function Home() {
                     </span>
                   ))}
                   <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    className="p-2 shadow appearance-none border w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline rounded-lg text-sm disabled:opacity-50 disabled:pointer-events-none bg-neutral-900 border-neutral-700 text-neutral-400 placeholder-neutral-500 focus:ring-neutral-600"
                     id="tagInput"
                     type="text"
                     placeholder="Search tags"
@@ -137,7 +125,7 @@ export default function Home() {
               <div className="flex items-center justify-between">
                 <button
                   onClick={searchPost}
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-2"
                   type="button"
                 >
                   Search

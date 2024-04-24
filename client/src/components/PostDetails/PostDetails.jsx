@@ -60,14 +60,21 @@ const PostDetails = () => {
       <div className="flex flex-col mb-4 mt-24 ml-6 mr-3">
         <div className="flex flex-row">
           <div className="w-full md:w-1/2">
-            <h2 className="text-4xl font-bold mb-2">{post.title}</h2>
+            <h2 className="text-4xl font-bold mb-2 text-blue-500">
+              {post.title}
+            </h2>
             <p className="text-gray-500 mb-2 text-lg">
               {post.tags.map((tag) => `#${tag} `)}
             </p>
             <p className="mb-2 text-2xl">{post.message}</p>
-            <p className="text-gray-500 text-xl">Created by: {post.name}</p>
             <p className="text-gray-500 text-xl">
-              {moment(post.createdAt).fromNow()}
+              Posted by: <span className="text-[#36d7b7]">{post.name}</span>
+            </p>
+            <p className="text-gray-500 text-xl">
+              on&nbsp;
+              <span className="text-[#36d7b7]">
+                {moment(post.createdAt).format("YYYY-MM-DD HH:mm:ss")}
+              </span>
             </p>
           </div>
           <div className="w-full md:w-1/2 -mt-10">
