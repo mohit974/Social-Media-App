@@ -1,17 +1,14 @@
 import React from "react";
 
 const Input = ({ name, handleChange, label, type, handleShowPassword }) => (
-  <div className={`mb-4 w-full`}>
-    <label
-      className="block text-gray-700 text-sm font-bold mb-2"
-      htmlFor={name}
-    >
+  <div className={`w-full`}>
+    <label className="block text-white text-sm font-bold mb-2" htmlFor={name}>
       {label}
     </label>
     <input
       name={name}
       onChange={handleChange}
-      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      className="shadow appearance-none border w-full py-2 px-3  leading-tight focus:outline-none focus:shadow-outline rounded-lg text-sm disabled:opacity-50 disabled:pointer-events-none bg-neutral-900 border-neutral-700 text-neutral-400 dark:placeholder-neutral-500 focus:ring-neutral-600"
       type={type}
       required
     />

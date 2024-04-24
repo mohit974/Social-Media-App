@@ -61,21 +61,61 @@ const Auth = () => {
 
   return (
     <GoogleOAuthProvider clientId={clientId}>
-      <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="max-w-md w-full px-6 space-y-6 bg-neutral-900 border border-neutral-700 rounded-xl shadow-sm">
           <div className="fixed top-1 left-10">
             <Link to="/" className="-mb-2">
-              <img src={snapsText} alt="icon" className="md:size-[120px]" />
+              <img
+                src={snapsText}
+                alt="icon"
+                className="md:size-[120px] invert"
+              />
             </Link>
           </div>
           <div>
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            <div className="text-center text-2xl font-bold text-white">
               {IsSignup ? "Sign up" : "Sign in"}
-            </h2>
+            </div>
           </div>
-          <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+          <div className="flex justify-center items-center">
+            {IsSignup ? (
+              <div class="inline text-sm text-neutral-400">
+                Already have an account? &nbsp;
+                <div
+                  class="inline decoration-2 hover:underline font-medium text-blue-500 hover:cursor-pointer"
+                  onClick={switchMode}
+                >
+                  Sign in here
+                </div>
+              </div>
+            ) : (
+              <div class="inline text-sm text-neutral-400">
+                Don't have an account yet? &nbsp;
+                <div
+                  class="inline decoration-2 hover:underline font-medium text-blue-500 hover:cursor-pointer"
+                  onClick={switchMode}
+                >
+                  Sign up here
+                </div>
+              </div>
+            )}
+          </div>
+          <div className="mt-2 flex justify-center items-center">
+            <GoogleLogin
+              clientId={clientId}
+              buttonText="Sign in with Google"
+              onSuccess={googleSuccess}
+              onFailure={googleError}
+              cookiePolicy={"single_host_origin"}
+            />
+          </div>
+          <div class="py-2 flex items-center text-xs uppercase before:flex-1 before:border-t  before:me-6 after:flex-1 after:border-t after:ms-6 text-neutral-500 before:border-neutral-600 after:border-neutral-600">
+            Or
+          </div>
+
+          <form className="space-y-2" onSubmit={handleSubmit}>
             {IsSignup && (
-              <>
+              <div className="flex space-x-2">
                 <Input
                   name="firstName"
                   handleChange={handleChange}
@@ -86,7 +126,7 @@ const Auth = () => {
                   handleChange={handleChange}
                   label="Last Name"
                 />
-              </>
+              </div>
             )}
             <Input
               name="email"
@@ -111,47 +151,12 @@ const Auth = () => {
             <div>
               <button
                 type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                class="w-full py-3 px-4 mb-6 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
               >
                 {IsSignup ? "Sign up" : "Sign in"}
               </button>
             </div>
           </form>
-          <div className="mt-6">
-            <div className="relative">
-              <div
-                className="absolute inset-0 flex items-center"
-                aria-hidden="true"
-              >
-                <div className="w-full border-t border-gray-300" />
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="bg-white px-2 text-gray-500">
-                  {" "}
-                  Or continue with{" "}
-                </span>
-              </div>
-            </div>
-            <div className="mt-6">
-              <GoogleLogin
-                clientId={clientId}
-                buttonText="Sign in with Google"
-                onSuccess={googleSuccess}
-                onFailure={googleError}
-                cookiePolicy={"single_host_origin"}
-              />
-            </div>
-            <div className="mt-6">
-              <button
-                onClick={switchMode}
-                className="w-full flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                {IsSignup
-                  ? "Already have an account? Sign in"
-                  : "Don't have an account? Sign up"}
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </GoogleOAuthProvider>
