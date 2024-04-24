@@ -26,7 +26,11 @@ const CommentSection = ({ post }) => {
           {post?.comments.length}
           &nbsp;{post?.comments.length < 2 ? "Comment" : "Comments"}
         </h6>
-        <div className="max-h-[200px] overflow-y-auto max-w-3xl bg-gray-600 rounded-lg p-2">
+        <div
+          className={`max-h-[200px] overflow-y-auto max-w-3xl rounded-lg p-2 ${
+            post?.comments.length ? "bg-gray-600" : ""
+          }`}
+        >
           {comments?.map((c, i) => (
             <p key={i} className="mb-2">
               <strong className="text-purple-300">{c.split(": ")[0]}</strong>

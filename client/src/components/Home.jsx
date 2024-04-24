@@ -22,6 +22,7 @@ export default function Home() {
   const query = useQuery();
   const page = query.get("page") || 1;
   const searchQuery = query.get("searchQuery");
+  const tagsFromUrl = query.get("tags") ? query.get("tags").split(",") : [];
 
   const [currentId, setCurrentId] = useState(0);
   const dispatch = useDispatch();
@@ -40,6 +41,14 @@ export default function Home() {
       navigate("/");
     }
   };
+
+  useEffect(() => {
+    if (searchQuery || tagsFromUrl.length > 0) {
+      dispatch(
+        fetchPostsBySearch({ search: searchQuery, tags: tagsFromUrl.join(",") })
+      );
+    }
+  }, [searchQuery, tagsFromUrl, dispatch]);
 
   const handleKeyPress = (e) => {
     if (e.keyCode === 13) {

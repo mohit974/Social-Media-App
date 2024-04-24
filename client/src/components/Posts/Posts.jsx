@@ -11,7 +11,9 @@ export default function Posts({ setCurrentId }) {
   return (
     <div className="w-full flex flex-col justify-center items-center rounded-xl flex-grow">
       {isLoading ? (
-        <PropagateLoader color="#36d7b7" />
+        <div className="absolute top-[50%] left-[50%]">
+          <PropagateLoader color="#36d7b7" />
+        </div>
       ) : (
         posts.map((post) => (
           <div key={post._id}>
