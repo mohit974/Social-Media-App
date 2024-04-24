@@ -133,7 +133,7 @@ export default function Home() {
               </div>
             </form>
           </div>
-          {!searchQuery && !tags.length && <Pagination page={page} />}
+          {!searchQuery && !tagsFromUrl.length && <Pagination page={page} />}
         </RightSidebar>
       </div>
     </div>

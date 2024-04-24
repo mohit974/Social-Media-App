@@ -41,6 +41,16 @@ const Auth = () => {
     setShowPassword(false);
   };
 
+  const handleClear = () => {
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    });
+  };
+
   const googleSuccess = async (res) => {
     const token = res?.credential;
     const result = jwt_decode(token);
@@ -62,13 +72,13 @@ const Auth = () => {
   return (
     <GoogleOAuthProvider clientId={clientId}>
       <div className="min-h-screen flex items-center justify-center">
-        <div className="max-w-md w-full px-6 space-y-6 bg-neutral-900 border border-neutral-700 rounded-xl shadow-sm">
+        <div className="max-w-md w-3/4 sm:w-full px-6 space-y-6 bg-neutral-900 border border-neutral-700 rounded-xl shadow-sm">
           <div className="fixed top-1 left-10">
             <Link to="/" className="-mb-2">
               <img
                 src={snapsText}
                 alt="icon"
-                className="md:size-[120px] invert"
+                className="size-20 md:size-[120px] invert"
               />
             </Link>
           </div>
@@ -118,11 +128,13 @@ const Auth = () => {
               <div className="flex space-x-2">
                 <Input
                   name="firstName"
+                  value={formData.firstName}
                   handleChange={handleChange}
                   label="First Name"
                 />
                 <Input
                   name="lastName"
+                  value={formData.lastName}
                   handleChange={handleChange}
                   label="Last Name"
                 />
@@ -130,19 +142,23 @@ const Auth = () => {
             )}
             <Input
               name="email"
+              value={formData.email}
               handleChange={handleChange}
               label="Email Address"
             />
             <Input
               name="password"
+              value={formData.password}
               handleChange={handleChange}
               label="Password"
               type={showPassword ? "text" : "password"}
               handleShowPassword={handleShowPassword}
+              showPassword={showPassword}
             />
             {IsSignup && (
               <Input
                 name="confirmPassword"
+                value={formData.confirmPassword}
                 handleChange={handleChange}
                 label="Confirm Password"
                 type="password"
@@ -151,9 +167,18 @@ const Auth = () => {
             <div>
               <button
                 type="submit"
-                class="w-full py-3 px-4 mb-6 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+                class="w-full py-2 px-4 mb-2 mt-2 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
               >
                 {IsSignup ? "Sign up" : "Sign in"}
+              </button>
+            </div>
+            <div>
+              <button
+                type="button"
+                onClick={handleClear}
+                class="w-full py-2 px-4 mb-6 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-600 text-white hover:bg-gray-700 disabled:opacity-50 disabled:pointer-events-none"
+              >
+                Clear
               </button>
             </div>
           </form>
