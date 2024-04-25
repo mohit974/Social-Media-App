@@ -39,15 +39,19 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-neutral-900 border border-neutral-700 mt-5 mx-4 mb-0 rounded-2xl flex flex-col items-center justify-center relative">
+    <div className="bg-neutral-900 border border-neutral-700 lg:mt-5 lg:mx-4 lg:mb-0 rounded-2xl flex lg:flex-col flex-row lg:items-center lg:justify-center justify-between">
       <div>
-        <Link to="/" className="flex items-center -mb-2">
-          <img src={snapsText} alt="icon" className="md:size-[120px] invert" />
+        <Link to="/" className="flex items-center -mb-2 ml-2">
+          <img
+            src={snapsText}
+            alt="icon"
+            className="size-20 md:size-[120px] invert"
+          />
         </Link>
       </div>
       {user?.result ? (
-        <div className="mb-4 flex justify-between items-center w-full px-4">
-          <div className="flex items-center space-x-2">
+        <div className="lg:mb-4 flex justify-between items-center lg:w-full px-4 mt-1 lg:mt-0">
+          <div className="flex items-center space-x-2 mr-2 lg:mr-0">
             {user?.result.imageUrl ? (
               <img
                 className="h-12 w-12 rounded-full"
@@ -55,11 +59,11 @@ const Navbar = () => {
                 alt={user?.result.name.charAt(0)}
               />
             ) : (
-              <span className="h-12 w-12 rounded-full bg-gray-200 text-gray-700 flex justify-center items-center text-center font-bold text-xl">
+              <span className="md:h-12 md:w-12 h-8 w-8 rounded-full bg-gray-200 text-gray-700 flex justify-center items-center text-center font-bold text-xl">
                 {getInitials(user?.result.name)}
               </span>
             )}
-            <span className="text-white text-2xl font-bold">
+            <span className="text-white md:text-2xl text-lg font-bold">
               {user?.result.name}
             </span>
           </div>
@@ -78,7 +82,7 @@ const Navbar = () => {
           </button>
         </div>
       ) : (
-        <div className="mb-4 flex flex-col justify-center items-center">
+        <div className="lg:mb-4 lg:flex flex-col justify-center items-center my-6 mr-3 md:mt-12 lg:my-0 lg:mr-0">
           <Link
             to="/auth"
             className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"

@@ -89,20 +89,20 @@ const Auth = () => {
           </div>
           <div className="flex justify-center items-center">
             {IsSignup ? (
-              <div class="inline text-sm text-neutral-400">
+              <div className="inline text-sm text-neutral-400">
                 Already have an account? &nbsp;
                 <div
-                  class="inline decoration-2 hover:underline font-medium text-blue-500 hover:cursor-pointer"
+                  className="inline decoration-2 hover:underline font-medium text-blue-500 hover:cursor-pointer"
                   onClick={switchMode}
                 >
                   Sign in here
                 </div>
               </div>
             ) : (
-              <div class="inline text-sm text-neutral-400">
+              <div className="inline text-sm text-neutral-400">
                 Don't have an account yet? &nbsp;
                 <div
-                  class="inline decoration-2 hover:underline font-medium text-blue-500 hover:cursor-pointer"
+                  className="inline decoration-2 hover:underline font-medium text-blue-500 hover:cursor-pointer"
                   onClick={switchMode}
                 >
                   Sign up here
@@ -119,7 +119,7 @@ const Auth = () => {
               cookiePolicy={"single_host_origin"}
             />
           </div>
-          <div class="py-2 flex items-center text-xs uppercase before:flex-1 before:border-t  before:me-6 after:flex-1 after:border-t after:ms-6 text-neutral-500 before:border-neutral-600 after:border-neutral-600">
+          <div className="py-2 flex items-center text-xs uppercase before:flex-1 before:border-t  before:me-6 after:flex-1 after:border-t after:ms-6 text-neutral-500 before:border-neutral-600 after:border-neutral-600">
             Or
           </div>
 
@@ -167,7 +167,7 @@ const Auth = () => {
             <div>
               <button
                 type="submit"
-                class="w-full py-2 px-4 mb-2 mt-2 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+                className="w-full py-2 px-4 mb-2 mt-2 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
               >
                 {IsSignup ? "Sign up" : "Sign in"}
               </button>
@@ -176,7 +176,7 @@ const Auth = () => {
               <button
                 type="button"
                 onClick={handleClear}
-                class="w-full py-2 px-4 mb-6 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-600 text-white hover:bg-gray-700 disabled:opacity-50 disabled:pointer-events-none"
+                className="w-full py-2 px-4 mb-6 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-600 text-white hover:bg-gray-700 disabled:opacity-50 disabled:pointer-events-none"
               >
                 Clear
               </button>

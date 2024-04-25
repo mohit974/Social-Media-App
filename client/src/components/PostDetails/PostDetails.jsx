@@ -37,12 +37,12 @@ const PostDetails = () => {
             <img
               src={snapsText}
               alt="icon"
-              className="md:size-[120px] invert"
+              className="size-20 md:size-[120px] invert"
             />
           </Link>
         </div>
         <div className="absolute top-[50%] left-[50%]">
-          <PropagateLoader color="#36d7b7" />
+          <PropagateLoader color="#3B82F6" />
         </div>
       </>
     );
@@ -51,14 +51,18 @@ const PostDetails = () => {
   const recommendedPosts = posts.filter(({ _id }) => _id !== post._id);
 
   return (
-    <div className="flex flex-col p-4 rounded shadow-lg text-white">
+    <div className="flex flex-col p-4 rounded text-white">
       <div className="absolute top-1 left-10">
         <Link to="/" className="-mb-2">
-          <img src={snapsText} alt="icon" className="md:size-[120px] invert" />
+          <img
+            src={snapsText}
+            alt="icon"
+            className="size-20 md:size-[120px] invert"
+          />
         </Link>
       </div>
       <div className="flex flex-col mb-4 mt-24 ml-6 mr-3">
-        <div className="flex flex-row">
+        <div className="flex flex-col md:flex-row md:space-x-2">
           <div className="w-full md:w-1/2">
             <h2 className="text-4xl font-bold mb-2 text-blue-500">
               {post.title}
@@ -77,7 +81,7 @@ const PostDetails = () => {
               </span>
             </p>
           </div>
-          <div className="w-full md:w-1/2 -mt-10">
+          <div className="w-full md:w-1/2 xl:-mt-10 mt-2">
             <img
               className="w-full h-96 object-cover rounded-2xl"
               src={
@@ -96,7 +100,7 @@ const PostDetails = () => {
             <h5 className="font-bold mb-2 text-2xl text-blue-300">
               You might also like:
             </h5>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {recommendedPosts.map(
                 ({ title, name, message, likes, selectedFile, _id, tags }) => (
                   <div

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deletePost, likePost } from "../../reducers/posts";
 
-const Post = ({ post, setCurrentId }) => {
+const Post = ({ post, setCurrentId, setIsOpenMenu, isOpenMenu }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
   const [likes, setLikes] = useState(post?.likes);
   const [isMessageVisible, setIsMessageVisible] = useState(false);
@@ -89,7 +89,7 @@ const Post = ({ post, setCurrentId }) => {
     navigate(`/posts/${post._id}`);
   };
 
-  const getInitials = (name = "N/A") => {
+  const getInitials = (name) => {
     const initials = name
       .split(" ")
       .map((n) => n[0])
@@ -98,7 +98,7 @@ const Post = ({ post, setCurrentId }) => {
   };
 
   return (
-    <div className="w-[700px] max-w-full bg-neutral-900 border border-neutral-700 rounded-xl shadow-md overflow-hidden my-1 relative hover:cursor-default">
+    <div className="lg:w-[700px] xl:max-w-full bg-neutral-900 border border-neutral-700 rounded-xl shadow-md overflow-hidden my-1 relative hover:cursor-default">
       <div className="flex p-4">
         <div>
           <span className="h-8 w-8 rounded-full bg-gray-200 text-gray-700 flex justify-center items-center text-center font-bold text-lg">
@@ -178,10 +178,32 @@ const Post = ({ post, setCurrentId }) => {
               alt={post.title}
             />
           </div>
-          {user?.result && (
+          {user?.result ? (
             <button type="button" disabled={!user?.result} onClick={handleLike}>
               <Likes />
             </button>
+          ) : (
+            <div className="flex flex-row mt-1 ml-1 space-x-2 ">
+              <button type="button" className="cursor-not-allowed">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="1.5em"
+                  height="1.5em"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="gray"
+                    d="M5 9v12H1V9zm4 12a2 2 0 0 1-2-2V9c0-.55.22-1.05.59-1.41L14.17 1l1.06 1.06c.27.27.44.64.44 1.05l-.03.32L14.69 8H21a2 2 0 0 1 2 2v2c0 .26-.05.5-.14.73l-3.02 7.05C19.54 20.5 18.83 21 18 21zm0-2h9.03L21 12v-2h-8.79l1.13-5.32L9 9.03z"
+                  ></path>
+                </svg>
+              </button>
+              <div className="text-[#808080] text-lg">
+                {likes.length}
+                <span className="ml-2 text-base">
+                  {likes.length > 2 ? "Likes" : "Like"}
+                </span>
+              </div>
+            </div>
           )}
         </div>
       </div>
@@ -193,6 +215,7 @@ const Post = ({ post, setCurrentId }) => {
               onClick={(e) => {
                 e.stopPropagation();
                 setCurrentId(post._id);
+                setIsOpenMenu(!isOpenMenu);
               }}
               className="text-gray-500 text-xl mt-1"
             >

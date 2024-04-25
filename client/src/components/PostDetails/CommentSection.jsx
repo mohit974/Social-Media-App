@@ -20,7 +20,7 @@ const CommentSection = ({ post }) => {
   };
 
   return (
-    <div className="p-4 -ml-4 text-white flex mt-2">
+    <div className="p-4 -ml-4 text-white flex sm:flex-row flex-col mt-2 space-x-2">
       <div className="flex-grow mb-4">
         <h6 className="font-bold mb-2 text-2xl">
           {post?.comments.length}
@@ -42,7 +42,7 @@ const CommentSection = ({ post }) => {
         <div ref={commentsRef} />
       </div>
       {!user?.result?.name && (
-        <div className="w-3/4 right-10 max-w-xl">
+        <div className="sm:w-3/4 w-full right-10 max-w-xl sm:mt-2">
           <h6 className="font-bold mb-2">Write a comment</h6>
           <textarea
             className="w-full p-2 border border-gray-300 rounded mb-2"

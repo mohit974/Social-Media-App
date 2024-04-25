@@ -69,7 +69,7 @@ const Form = ({ currentId, setCurrentId }) => {
   };
 
   return (
-    <div className="bg-neutral-900 border border-neutral-700 mt-2 mx-4 rounded-2xl px-8 pt-4 pb-4 mb-2 shadow-md">
+    <div className="bg-neutral-900 border border-neutral-700 mt-2 mx-4 rounded-2xl px-8 pt-4 pb-4 mb-2 shadow-md overflow-clip">
       <form autoComplete="off" noValidate onSubmit={handleSubmit}>
         <h2 className="text-lg font-bold text-white truncate">
           {currentId ? `Editing "${post?.title}"` : "Create a Snap"}
