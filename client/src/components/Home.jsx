@@ -101,7 +101,7 @@ export default function Home() {
           setIsOpenMenu={setIsOpenMenu}
           isOpenMenu={isOpenMenu}
         />
-        {!isLoading || (
+        {isLoading || (
           <div className="mt-1 w-fit absolute bottom-0 xl:hidden">
             <Pagination page={page} />
           </div>
