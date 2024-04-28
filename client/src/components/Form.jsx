@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { createPost, updatePost } from "../reducers/posts";
-import Input from "./Auth/Input";
 
 const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
@@ -34,13 +33,20 @@ const Form = ({ currentId, setCurrentId }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (currentId === 0) {
-      dispatch(createPost({ ...postData, name: user?.result?.name }, navigate));
+      dispatch(
+        createPost({
+          post: { ...postData, name: user?.result?.name },
+          navigate: navigate,
+        })
+      );
       clear();
     } else {
       dispatch(
-        updatePost(currentId, { ...postData, name: user?.result?.name })
+        updatePost({
+          id: currentId,
+          post: { ...postData, name: user?.result?.name },
+        })
       );
       clear();
     }
@@ -70,7 +76,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
   return (
     <div className="bg-neutral-900 border border-neutral-700 mt-2 mx-4 rounded-2xl px-8 pt-4 pb-4 mb-2 shadow-md overflow-clip">
-      <form autoComplete="off" noValidate onSubmit={handleSubmit}>
+      <form autoComplete="off" noValidate>
         <h2 className="text-lg font-bold text-white truncate">
           {currentId ? `Editing "${post?.title}"` : "Create a Snap"}
         </h2>
@@ -114,6 +120,7 @@ const Form = ({ currentId, setCurrentId }) => {
             placeholder="Tags"
             onKeyDown={(e) => {
               if (e.key === "Enter") {
+                e.preventDefault();
                 handleAddChip(e.target.value);
                 e.target.value = "";
               }
@@ -132,6 +139,7 @@ const Form = ({ currentId, setCurrentId }) => {
         <button
           className="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mt-4"
           type="submit"
+          onClick={handleSubmit}
         >
           Submit
         </button>

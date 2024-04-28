@@ -6,7 +6,7 @@ import { deletePost, likePost } from "../../reducers/posts";
 
 const Post = ({ post, setCurrentId, setIsOpenMenu, isOpenMenu }) => {
   const user = JSON.parse(localStorage.getItem("profile"));
-  const [likes, setLikes] = useState(post?.likes);
+  const [likes, setLikes] = useState(post?.likes || []);
   const [isMessageVisible, setIsMessageVisible] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -89,7 +89,7 @@ const Post = ({ post, setCurrentId, setIsOpenMenu, isOpenMenu }) => {
     navigate(`/posts/${post._id}`);
   };
 
-  const getInitials = (name) => {
+  const getInitials = (name = "error in name") => {
     const initials = name
       .split(" ")
       .map((n) => n[0])
@@ -178,13 +178,41 @@ const Post = ({ post, setCurrentId, setIsOpenMenu, isOpenMenu }) => {
               alt={post.title}
             />
           </div>
-          {user?.result ? (
-            <button type="button" disabled={!user?.result} onClick={handleLike}>
-              <Likes />
-            </button>
-          ) : (
-            <div className="flex flex-row mt-1 ml-1 space-x-2 ">
-              <button type="button" className="cursor-not-allowed">
+          <div className="flex space-x-4 items-center">
+            {user?.result ? (
+              <button
+                type="button"
+                disabled={!user?.result}
+                onClick={handleLike}
+              >
+                <Likes />
+              </button>
+            ) : (
+              <div className="flex flex-row items-center mt-2 ml-1 space-x-2 ">
+                <button type="button" className="cursor-not-allowed">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="1.5em"
+                    height="1.5em"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="gray"
+                      d="M5 9v12H1V9zm4 12a2 2 0 0 1-2-2V9c0-.55.22-1.05.59-1.41L14.17 1l1.06 1.06c.27.27.44.64.44 1.05l-.03.32L14.69 8H21a2 2 0 0 1 2 2v2c0 .26-.05.5-.14.73l-3.02 7.05C19.54 20.5 18.83 21 18 21zm0-2h9.03L21 12v-2h-8.79l1.13-5.32L9 9.03z"
+                    ></path>
+                  </svg>
+                </button>
+                <div className="text-[#808080] text-lg">
+                  {likes.length}
+                  <span className="ml-2 text-lg">
+                    {likes.length > 2 ? "Likes" : "Like"}
+                  </span>
+                </div>
+              </div>
+            )}
+            <div className="flex flex-row mt-3 space-x-1">
+              {" "}
+              <button type="submit" onClick={openPost}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="1.5em"
@@ -192,19 +220,14 @@ const Post = ({ post, setCurrentId, setIsOpenMenu, isOpenMenu }) => {
                   viewBox="0 0 24 24"
                 >
                   <path
-                    fill="gray"
-                    d="M5 9v12H1V9zm4 12a2 2 0 0 1-2-2V9c0-.55.22-1.05.59-1.41L14.17 1l1.06 1.06c.27.27.44.64.44 1.05l-.03.32L14.69 8H21a2 2 0 0 1 2 2v2c0 .26-.05.5-.14.73l-3.02 7.05C19.54 20.5 18.83 21 18 21zm0-2h9.03L21 12v-2h-8.79l1.13-5.32L9 9.03z"
+                    fill="white"
+                    d="M6 14h12v-2H6zm0-3h12V9H6zm0-3h12V6H6zM4 18q-.825 0-1.412-.587T2 16V4q0-.825.588-1.412T4 2h16q.825 0 1.413.588T22 4v18l-4-4z"
                   ></path>
                 </svg>
               </button>
-              <div className="text-[#808080] text-lg">
-                {likes.length}
-                <span className="ml-2 text-base">
-                  {likes.length > 2 ? "Likes" : "Like"}
-                </span>
-              </div>
+              <p>{post?.comments.length}</p>
             </div>
-          )}
+          </div>
         </div>
       </div>
       {(user?.result?.googleId === post?.creator ||

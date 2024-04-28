@@ -30,7 +30,7 @@ const Navbar = () => {
     setUser(JSON.parse(localStorage.getItem("profile")));
   }, [location]);
 
-  const getInitials = (name) => {
+  const getInitials = (name = "error in name") => {
     const initials = name
       .split(" ")
       .map((n) => n[0])

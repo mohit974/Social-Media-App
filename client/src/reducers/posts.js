@@ -50,7 +50,9 @@ export const likePost = createAsyncThunk("posts/likePost", async (id) => {
 export const commentPost = createAsyncThunk(
   "posts/commentPost",
   async ({ value, id }) => {
+    // console.log("before", value);
     const response = await api.comment(value, id);
+    // console.log("after", response.data);
     return response.data;
   }
 );
