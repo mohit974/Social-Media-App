@@ -1,8 +1,8 @@
-import express from "express";
 import bodyParser from "body-parser";
-import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import express from "express";
+import mongoose from "mongoose";
 import PostRoutes from "./routes/posts.js";
 import userRoutes from "./routes/user.js";
 
@@ -15,6 +15,10 @@ app.use(cors());
 
 app.use("/posts", PostRoutes);
 app.use("/user", userRoutes);
+
+app.get("/", (req, res) => {
+  res.send("APP IS RUNNING");
+});
 
 const PORT = process.env.PORT || 5000;
 
