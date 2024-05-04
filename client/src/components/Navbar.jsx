@@ -42,7 +42,7 @@ const Navbar = ({ openMenu, isOpenMenu, currentId, setCurrentId }) => {
 
   return (
     <div className="bg-neutral-900 border border-neutral-700 lg:mt-5 lg:mx-4 lg:mb-0 rounded-2xl flex lg:flex-col flex-row lg:items-center lg:justify-center justify-between w-full lg:w-[87%] xl:w-11/12">
-      <div className="lg:hidden mt-5 ml-2">
+      <div className="lg:hidden mt-5 ml-2 md:mt-10">
         {!isOpenMenu ? (
           <button type="button" onClick={openMenu}>
             <svg
@@ -94,7 +94,7 @@ const Navbar = ({ openMenu, isOpenMenu, currentId, setCurrentId }) => {
         </Link>
       </div>
       {user?.result ? (
-        <div className="lg:mb-4 flex justify-between items-center lg:w-full px-1 mt-1 lg:mt-0">
+        <div className="lg:mb-4 flex justify-between items-center lg:w-full px-1 lg:px-4 mt-1 lg:mt-0">
           <div className="flex items-center space-x-2 mr-2 lg:mr-0">
             {user?.result.imageUrl ? (
               <img
