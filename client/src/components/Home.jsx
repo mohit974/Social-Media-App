@@ -95,14 +95,14 @@ export default function Home() {
           )}
         </div>
       </div>
-      <div className="w-full lg:w-2/4 flex justify-center items-center">
+      <div className="w-full lg:w-2/4 flex flex-col justify-center items-center">
         <Posts
           setCurrentId={setCurrentId}
           setIsOpenMenu={setIsOpenMenu}
           isOpenMenu={isOpenMenu}
         />
         {isLoading || (
-          <div className="mt-1 w-fit absolute bottom-0 xl:hidden">
+          <div className="mt-1 w-fit xl:hidden">
             <Pagination page={page} />
           </div>
         )}
