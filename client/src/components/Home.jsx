@@ -50,50 +50,14 @@ export default function Home() {
           <Form currentId={currentId} setCurrentId={setCurrentId} />
         </LeftSidebar>
       </div>
-      <div className="flex flex-col lg:hidden w-full">
-        <Navbar />
-        <div className="my-2 ml-2">
-          {!isOpenMenu ? (
-            <button type="button" onClick={openMenu}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="2em"
-                height="2em"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  fill="white"
-                  d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"
-                ></path>
-              </svg>
-            </button>
-          ) : (
-            <button type="button" onClick={openMenu}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="2em"
-                height="2em"
-                viewBox="0 0 24 24"
-                onClick={openMenu}
-              >
-                <path
-                  fill="white"
-                  d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"
-                ></path>
-              </svg>
-            </button>
-          )}
-          {isOpenMenu && (
-            <div className="fixed left-0 w-2/3 h-fit z-50 bg-black/50 bg-opacity-80 rounded-xl pt-2">
-              <Form
-                currentId={currentId}
-                setCurrentId={setCurrentId}
-                isOpenMenu
-              />
-              <SearchComponent />{" "}
-            </div>
-          )}
-        </div>
+      <div className="flex lg:hidden w-full">
+        <Navbar
+          openMenu={openMenu}
+          isOpenMenu={isOpenMenu}
+          setIsOpenMenu={setIsOpenMenu}
+          currentId={currentId}
+          setCurrentId={setCurrentId}
+        />
       </div>
       <div className="w-full lg:w-2/4 flex flex-col justify-center items-center">
         <Posts

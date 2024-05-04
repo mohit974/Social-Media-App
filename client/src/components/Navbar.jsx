@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logout } from "../reducers/auth";
+import Form from "./Form";
+import SearchComponent from "./SearchComponent";
 
 import snapsText from "../images/snaps-text.png";
 
-const Navbar = () => {
+const Navbar = ({ openMenu, isOpenMenu, currentId, setCurrentId }) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
   const dispatch = useDispatch();
   const location = useLocation();
@@ -39,7 +41,49 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-neutral-900 border border-neutral-700 lg:mt-5 lg:mx-4 lg:mb-0 rounded-2xl flex lg:flex-col flex-row lg:items-center lg:justify-center justify-between">
+    <div className="bg-neutral-900 border border-neutral-700 lg:mt-5 lg:mx-4 lg:mb-0 rounded-2xl flex lg:flex-col flex-row lg:items-center lg:justify-center justify-between w-full lg:w-[87%] xl:w-11/12">
+      <div className="mt-5 ml-3 md:mt-10 md:ml-4 lg:mt-0 lg:ml-0 lg:hidden">
+        {!isOpenMenu ? (
+          <button type="button" onClick={openMenu}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="2em"
+              height="2em"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="white"
+                d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"
+              ></path>
+            </svg>
+          </button>
+        ) : (
+          <button type="button" onClick={openMenu}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="2em"
+              height="2em"
+              viewBox="0 0 24 24"
+              onClick={openMenu}
+            >
+              <path
+                fill="white"
+                d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"
+              ></path>
+            </svg>
+          </button>
+        )}
+        {isOpenMenu && (
+          <div className="fixed left-0 w-2/3 h-fit z-50 bg-black/50 bg-opacity-80 rounded-xl pt-2 ml-2">
+            <Form
+              currentId={currentId}
+              setCurrentId={setCurrentId}
+              isOpenMenu
+            />
+            <SearchComponent />{" "}
+          </div>
+        )}
+      </div>
       <div>
         <Link to="/" className="flex items-center -mb-2 ml-2">
           <img
