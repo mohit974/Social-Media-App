@@ -67,7 +67,7 @@ export default function Home() {
         />
         {isLoading || (
           <div className="mt-1 w-fit xl:hidden">
-            <Pagination page={page} />
+            {!searchQuery && !tagsFromUrl.length && <Pagination page={page} />}
           </div>
         )}
       </div>

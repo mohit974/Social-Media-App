@@ -11,8 +11,8 @@ function useQuery() {
 
 const SearchComponent = ({ className }) => {
   const query = useQuery();
-  const searchQuery = query.get("searchQuery");
-  const tagsFromUrl = query.get("tags") ? query.get("tags").split(",") : [];
+  // const searchQuery = query.get("searchQuery");
+  // const tagsFromUrl = query.get("tags") ? query.get("tags").split(",") : [];
 
   const dispatch = useDispatch();
 
@@ -22,6 +22,7 @@ const SearchComponent = ({ className }) => {
 
   const searchPost = () => {
     if (search.trim() || tags) {
+      dispatch(fetchPostsBySearch({ search, tags: tags.join(",") }));
       navigate(
         `/posts/search?searchQuery=${search || "none"}&tags=${tags.join(",")}`
       );
@@ -30,13 +31,13 @@ const SearchComponent = ({ className }) => {
     }
   };
 
-  useEffect(() => {
-    if (searchQuery || tagsFromUrl.length > 0) {
-      dispatch(
-        fetchPostsBySearch({ search: searchQuery, tags: tagsFromUrl.join(",") })
-      );
-    }
-  }, [searchQuery, tagsFromUrl, dispatch]);
+  // useEffect(() => {
+  //   if (searchQuery || tagsFromUrl.length > 0) {
+  //     dispatch(
+  //       fetchPostsBySearch({ search: searchQuery, tags: tagsFromUrl.join(",") })
+  //     );
+  //   }
+  // }, [searchQuery, tagsFromUrl, dispatch]);
 
   const handleKeyPress = (e) => {
     if (e.keyCode === 13) {
