@@ -4,13 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { commentPost } from "../../reducers/posts";
 
 const CommentSection = ({ post }) => {
-  const [comments, setComments] = useState(post?.comments ?? [""]);
+  const [comments, setComments] = useState(post?.comments);
   const [comment, setComment] = useState("");
   const user = JSON.parse(localStorage.getItem("profile"));
   const dispatch = useDispatch();
 
   const selectedComments = useSelector(
-    (state) => state.posts.posts.find((post) => post._id === post._id)?.comments
+    (state) => state.posts.posts.find((p) => p._id === post._id)?.comments
   );
 
   useEffect(() => {
@@ -35,19 +35,19 @@ const CommentSection = ({ post }) => {
     <div className="p-4 -ml-4 text-white flex sm:flex-row flex-col mt-2 space-x-2">
       <div className="flex-grow mb-4">
         <h6 className="font-bold mb-2 text-2xl">
-          {comments.length}
-          &nbsp;{comments.length < 2 ? "Comment" : "Comments"}
+          {post?.comments.length}
+          &nbsp;{post?.comments.length < 2 ? "Comment" : "Comments"}
         </h6>
         <div
           className={`max-h-[200px] overflow-y-auto max-w-3xl rounded-lg p-2 ${
-            comments.length ? "bg-gray-600" : ""
+            post?.comments.length ? "bg-gray-600" : ""
           }`}
         >
           {comments?.map((c, i) => (
             <div key={i} className="mb-2">
               <strong className="text-purple-300">{c.split(": ")[0]}</strong>
               <span className="text-gray-100">{c.split(":")[1]}</span>
-              {comments.length > 1 ? <hr className="mt-3" /> : ""}
+              {post?.comments.length > 1 ? <hr className="mt-3" /> : ""}
             </div>
           ))}
         </div>

@@ -9,8 +9,8 @@ export default function Posts({ setCurrentId, setIsOpenMenu, isOpenMenu }) {
   const { posts, isLoading } = useSelector((state) => state.posts);
   if (!posts.length && !isLoading)
     return (
-      <div className="absolute top-[50%] left-[50%] text-white">
-        No posts here, Go to the first page
+      <div className="absolute top-0 left-[40%] mt-4 text-white">
+        No posts here, Go to the another page
       </div>
     );
   return (
