@@ -1,9 +1,9 @@
 import axios from "axios";
 
-// const API = axios.create({
-//   baseURL: "https://social-media-app-qdki.onrender.com/",
-// });
-const API = axios.create({ baseURL: "http://localhost:5000" });
+const API = axios.create({
+  baseURL: "https://social-media-app-qdki.onrender.com/",
+});
+// const API = axios.create({ baseURL: "http://localhost:5000" });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("profile")) {
