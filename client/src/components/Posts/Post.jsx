@@ -102,7 +102,7 @@ const Post = ({ post, setCurrentId, setIsOpenMenu, isOpenMenu }) => {
       <div className="flex p-4">
         <div>
           <span className="h-8 w-8 rounded-full bg-gray-200 text-gray-700 flex justify-center items-center text-center font-bold text-lg">
-            {getInitials(post?.name)}
+            {post.name ? post.name[0].toUpperCase() : "N/A"}{" "}
           </span>
         </div>
         <div className="ml-4">
@@ -225,7 +225,9 @@ const Post = ({ post, setCurrentId, setIsOpenMenu, isOpenMenu }) => {
                   ></path>
                 </svg>
               </button>
-              <p>{post?.comments.length}</p>
+              {post && Array.isArray(post.comments) && (
+                <p>{post.comments.length}</p>
+              )}{" "}
             </div>
           </div>
         </div>

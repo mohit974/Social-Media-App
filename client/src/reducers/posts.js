@@ -7,9 +7,7 @@ export const fetchPost = createAsyncThunk("posts/fetchPost", async (id) => {
 });
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async (page) => {
-  console.log(page);
   const response = await api.fetchPosts(page);
-  console.log(response);
 
   return response.data;
 });

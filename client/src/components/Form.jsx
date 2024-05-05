@@ -48,6 +48,7 @@ const Form = ({ currentId, setCurrentId }) => {
           post: { ...postData, name: user?.result?.name },
         })
       );
+
       clear();
     }
   };
