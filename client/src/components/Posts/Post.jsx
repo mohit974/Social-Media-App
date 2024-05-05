@@ -102,7 +102,7 @@ const Post = ({ post, setCurrentId, setIsOpenMenu, isOpenMenu }) => {
       <div className="flex p-4">
         <div>
           <span className="h-8 w-8 rounded-full bg-gray-200 text-gray-700 flex justify-center items-center text-center font-bold text-lg">
-            {post.name ? post.name[0].toUpperCase() : "N/A"}{" "}
+            {getInitials(post?.name)}{" "}
           </span>
         </div>
         <div className="ml-4">
