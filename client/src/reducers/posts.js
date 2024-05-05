@@ -51,9 +51,9 @@ export const likePost = createAsyncThunk("posts/likePost", async (id) => {
 export const commentPost = createAsyncThunk(
   "posts/commentPost",
   async ({ value, id }) => {
-    console.log("before", value);
+    // console.log("before", value);
     const response = await api.comment(value, id);
-    console.log("after", response.data);
+    // console.log("after", response.data);
     return response.data;
   }
 );
@@ -159,7 +159,7 @@ const postsSlice = createSlice({
       })
       .addCase(commentPost.fulfilled, (state, action) => {
         state.isLoading = false;
-        console.log("action payload", action.payload);
+        // console.log("action payload", action.payload);
         const index = state.posts.findIndex(
           (post) => post._id === action.payload._id
         );
