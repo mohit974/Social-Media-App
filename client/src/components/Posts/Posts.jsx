@@ -10,7 +10,7 @@ export default function Posts({ setCurrentId, setIsOpenMenu, isOpenMenu }) {
   if (!posts.length && !isLoading)
     return (
       <div className="absolute top-0 left-[40%] mt-4 text-white">
-        No posts here, Go to the another page
+        No posts here, Go to another page
       </div>
     );
   return (
