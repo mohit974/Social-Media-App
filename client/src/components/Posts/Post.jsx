@@ -11,7 +11,7 @@ const Post = ({ post, setCurrentId, setIsOpenMenu, isOpenMenu }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const userId = user?.result.googleId || user?.result?._id;
+  const userId = user?.result.sub || user?.result?._id;
   const hasLikedPost = post?.likes?.find((like) => like === userId);
 
   const handleLike = async (e) => {
@@ -232,7 +232,7 @@ const Post = ({ post, setCurrentId, setIsOpenMenu, isOpenMenu }) => {
           </div>
         </div>
       </div>
-      {(user?.result?.googleId === post?.creator ||
+      {(user?.result?.sub === post?.creator ||
         user?.result?._id === post?.creator) && (
         <div className="">
           <div className="absolute top-0 right-0 mt-4 mr-4">
